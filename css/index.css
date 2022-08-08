@@ -1,0 +1,86 @@
+/*Externos*/
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Khula:wght@400;600&family=Montserrat:wght@100;500;600&display=swap");
+/*Misc*/
+/*Colors*/
+primary {
+  color: #363535; }
+
+secondary {
+  color: #EFEAE0; }
+
+alternative {
+  color: #F1BDA7; }
+
+text-color {
+  color: #F8EFEA; }
+
+base {
+  color: #ffff; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  background-color: #C4C4C4;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-position: center;
+  font-family: 'Khula',sans-serif; }
+
+
+/*Pages*/
+
+/*Productos*/
+#productosContainer {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center; }
+
+.box {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-width: 300px;
+  margin: 20px;
+  background-color: white;
+  text-align: center;
+  font-family: arial;
+  padding: 1px;
+  transition: transform .2s; }
+  .box__img {
+    width: 300px;
+    border-radius: 10px; }
+  .box__title {
+    margin: 10px;
+    font-family: 'Khula',sans-serif; }
+  .box__text {
+    font-size: 10px;
+    color: #252525;
+    padding: 2px; }
+
+.button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 10px; }
+
+.box:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform: scale(1.1); }
+
+button:hover {
+  opacity: 0.7; }
