@@ -1,5 +1,5 @@
 
-console.log(document)
+
 
 //Productos
 class Product {
@@ -28,7 +28,9 @@ const productos = [producto1, producto2, producto3, producto4, producto5,product
 
 const productosContainerQuery = document.querySelector('#productosContainer')
 
-productos.forEach((producto) => {
+const renderizarProductos= () =>{
+
+   productos.forEach((producto) => {
     const nuevoDiv = document.createElement('div')
     nuevoDiv.innerHTML = `
             <img src="${producto.img}" class="box__img" alt="producto">
@@ -40,3 +42,9 @@ productos.forEach((producto) => {
     nuevoDiv.className = 'box'
     productosContainerQuery.append(nuevoDiv)
 })
+ 
+}
+
+const mostrarProducto= document.querySelector ('#mostrarProducto')
+
+mostrarProducto.addEventListener ('click', renderizarProductos)
