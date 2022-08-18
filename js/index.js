@@ -1,50 +1,136 @@
 
 
 
-//Productos
-class Product {
-    constructor(prod, descripcion, precio,img) {
-     
-        this.pord = prod
-        this.descripcion = descripcion
-        this.precio = precio   
-        this.img= img
-    }
 
-}
+const contenedorProductos = document.getElementById('contenedor-productos')
 
-const producto1 = new Product('Velas de Cera de Soja','Hecha con cera de soja orgánica y esencias naturales.', 2000,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJesEcuA365oj5CsF__ZMlwtuWe3H4qlZ3dQ&usqp=CAU')
-const producto2 = new Product('Velas de Cera de Soja','Hecha con cera de soja orgánica y esencias naturales.', 2000,'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/174/623/products/2-velas-marmol-pagina1-a5f4200c316521cfc516051141793260-480-0.png')
-const producto3= new Product('Velas de Cera de Soja', 'Hecha con cera de soja orgánica y esencias naturales.', 2000,'https://i.etsystatic.com/34861642/r/il/976442/3915568486/il_340x270.3915568486_thfh.jpg')
-const producto4 = new Product('Velas de Cera de Soja', 'Hecha con cera de soja orgánica y esencias naturales.', 2000,'https://dojiw2m9tvv09.cloudfront.net/27166/product/M_99726572-14522301558233.jpg?46')
-const producto5 = new Product('Difusores','Hechos con aceites naturales y alcohol de cereal. Envase de Cerámica', 2000,'https://http2.mlstatic.com/D_NQ_NP_875183-MLA48588065675_122021-O.jpg')
-const producto6 = new Product('Difusores','Hechos con aceites naturales y alcohol de cereal. Envase de Vidrio', 2000,'https://d22fxaf9t8d39k.cloudfront.net/daabcafb98ed7508d8d0ffe4626c68b2a957376b33d2df7978b634365a5d8fa224600.png')
-const producto7 = new Product('PerlasAromaticas', 'Hechos con bizcocho de cerámica y esencias.', 1800,'https://mercadopax.com.ar/wp-content/uploads/2019/12/perlitas-bohemia-4.jpg"')
-const producto8 = new Product('PerlasAromaticas',  'Hechos con bizcocho de cerámica y esencias.', 1800,'https://bohemiavelas.com.ar/wp-content/uploads/2021/06/perlitas-ceramica-perfumadas-bomehia-velas-aromas.jpg')
+const contenedorCarrito = document.getElementById('carritoContenedor')
+
+const botonVaciar = document.getElementById('vaciarCarrito')
+
+const contadorCarrito = document.getElementById('contadorCarrito')
+
+const cantidad = document.getElementById('cantidad')
+
+const precioTotal = document.getElementById('precioTotal')
+
+const cantidadTotal = document.getElementById('cantidadTotal')
+
+const mostrarProducto= document.querySelector ('#mostrarProducto')
 
 
+
+
+
+
+
+//ARRAY PRODUCTOS
 const productos = [producto1, producto2, producto3, producto4, producto5,producto6,producto7, producto8]
 
 
-const productosContainerQuery = document.querySelector('#productosContainer')
+//ARRAY CARRITO
+let carrito= []
+
+
+
+//GET LOCAL STORAGE
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('carrito')){
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizarCarrito()
+    }
+})
+
+
+
+
+//VACIAR CARRITO
+botonVaciar.addEventListener('click', () => {
+    carrito.length = 0
+    actualizarCarrito()
+})
+
+
+//PRODUCTOS
+const productosContainer = document.querySelector('#productosContainer')
 
 const renderizarProductos= () =>{
 
-   productos.forEach((producto) => {
+   productos.forEach ((producto) => {
     const nuevoDiv = document.createElement('div')
     nuevoDiv.innerHTML = `
             <img src="${producto.img}" class="box__img" alt="producto">
             <h1 class="box__title"> ${producto.pord} </h1>
             <p class="box__text" >${producto.descripcion}</p>
-            <h2 class="Box_price">${producto.precio}</h2>
-            <button class="button">Comprar</button>
+            <h2 class="Box_price">$ ${producto.precio}.-</h2>
+            <button id="agregar${producto.id}" class="button">Añadir al Carrito <i class="fas fa-shopping-cart"></i></button>
     `
     nuevoDiv.className = 'box'
-    productosContainerQuery.append(nuevoDiv)
+    productosContainer.append(nuevoDiv)
+
+
+    const boton = document.getElementById(`agregar${producto.id}`)
+
+
+    boton.addEventListener('click', () => {
+        
+    agregarAlCarrito(producto.id)
+        
+    })
 })
+
+//AGREGAR AL CARRITO
+const agregarAlCarrito = (prodId) => {
+    const item = productos.find((prod) => prod.id === prodId)
+    carrito.push(item)
+    actualizarCarrito()
+    console.log(carrito);
+}
  
 }
 
-const mostrarProducto= document.querySelector ('#mostrarProducto')
+//ELIMINAR DEL CARRITO
+
+const eliminarDelCarrito = (prodId) => {
+    const item = carrito.find((prod) => prod.id === prodId)
+
+    const indice = carrito.indexOf(item) 
+
+    carrito.splice(indice, 1) 
+    actualizarCarrito() 
+    console.log(carrito)
+}
+
+
+const actualizarCarrito = () => {
+    contenedorCarrito.innerHTML = ""
+
+    carrito.forEach((prod) => {
+        const div = document.createElement('div')
+        div.className = ('productoEnCarrito')
+        div.innerHTML = `
+        <img src="${prod.img}" class="carritoImg" alt="producto">
+        <p>${prod.pord}</p>
+        <p>Precio:$${prod.precio}</p>
+        <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+        <button onclick="eliminarDelCarrito(${prod.id})" class="botonEliminar"><i class="fas fa-trash"></i></button>
+        `
+
+        contenedorCarrito.appendChild(div)
+
+        //SET LOCAL STORAGE
+        localStorage.setItem('carrito', JSON.stringify(carrito))
+
+    })
+
+    //CONTADOR DEL CARRITO
+    contadorCarrito.innerText = carrito.length 
+    //PRECIO TOTAL CARRITO
+    precioTotal.innerText = carrito.reduce((acumulador, prod) => acumulador + prod.cantidad * prod.precio, 0)
+}
+
+
 
 mostrarProducto.addEventListener ('click', renderizarProductos)
+
+
