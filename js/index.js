@@ -7,6 +7,7 @@ const contenedorProductos = document.getElementById('contenedor-productos')
 const contenedorCarrito = document.getElementById('carritoContenedor')
 
 const botonVaciar = document.getElementById('vaciarCarrito')
+const botonConfirmarCompra = document.getElementById('confirmarCompra')
 
 const contadorCarrito = document.getElementById('contadorCarrito')
 
@@ -51,6 +52,20 @@ botonVaciar.addEventListener('click', () => {
 })
 
 
+
+
+//CONFIRMAR COMPRA
+botonConfirmarCompra.addEventListener('click', () => {
+    const confirmaCompra = (carrito.length ===0) && alert("¡No hay productos en el Carrito!")
+      
+
+})
+
+
+
+
+
+
 //PRODUCTOS
 const productosContainer = document.querySelector('#productosContainer')
 
@@ -81,12 +96,24 @@ const renderizarProductos= () =>{
 
 //AGREGAR AL CARRITO
 const agregarAlCarrito = (prodId) => {
+
+
+    const AgregarCantidad = carrito.some (prod => prod.id === prodId) 
+
+    if (AgregarCantidad){ 
+        const prod = carrito.map (prod => { 
+            if (prod.id === prodId){
+                prod.cantidad++
+            }
+        })
+    } else {
+
     const item = productos.find((prod) => prod.id === prodId)
     carrito.push(item)
     actualizarCarrito()
-    console.log(carrito);
-}
- 
+    console.log(carrito);}
+    }
+    
 }
 
 //ELIMINAR DEL CARRITO
@@ -127,6 +154,7 @@ const actualizarCarrito = () => {
     contadorCarrito.innerText = carrito.length 
     //PRECIO TOTAL CARRITO
     precioTotal.innerText = carrito.reduce((acumulador, prod) => acumulador + prod.cantidad * prod.precio, 0)
+    
 }
 
 
