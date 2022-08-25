@@ -7,7 +7,8 @@ const contenedorProductos = document.getElementById('contenedor-productos')
 const contenedorCarrito = document.getElementById('carritoContenedor')
 
 const botonVaciar = document.getElementById('vaciarCarrito')
-const botonConfirmarCompra = document.getElementById('confirmarCompra')
+
+const botonConfirmarCompra = document.querySelector('#confirmarCompra')
 
 const contadorCarrito = document.getElementById('contadorCarrito')
 
@@ -51,19 +52,23 @@ botonVaciar.addEventListener('click', () => {
     actualizarCarrito()
 })
 
-
-
-
 //CONFIRMAR COMPRA
 botonConfirmarCompra.addEventListener('click', () => {
-    const confirmaCompra = (carrito.length ===0) && alert("¡No hay productos en el Carrito!")
-      
-
+    Swal.fire({
+        title: '¡Gracias por tu Compra!',
+        text: 'Gracias por su compra, su total es de $ ' + precioTotal.innerText,
+        color:'white',
+        background: '#535252',
+        confirmButtonColor: 'black',
+        showClass: {
+          popup: 'animate__animated animate__backInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__backOutUp'
+        }
+         })         
+         
 })
-
-
-
-
 
 
 //PRODUCTOS
@@ -113,7 +118,8 @@ const agregarAlCarrito = (prodId) => {
     actualizarCarrito()
     console.log(carrito);}
     }
-    
+
+
 }
 
 //ELIMINAR DEL CARRITO
@@ -156,7 +162,6 @@ const actualizarCarrito = () => {
     precioTotal.innerText = carrito.reduce((acumulador, prod) => acumulador + prod.cantidad * prod.precio, 0)
     
 }
-
 
 
 mostrarProducto.addEventListener ('click', renderizarProductos)
