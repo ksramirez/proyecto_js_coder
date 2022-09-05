@@ -1,37 +1,29 @@
 
 
-
-
-const contenedorProductos = document.getElementById('contenedor-productos')
-
-const contenedorCarrito = document.getElementById('carritoContenedor')
-
-const botonVaciar = document.getElementById('vaciarCarrito')
-
-const botonConfirmarCompra = document.querySelector('#confirmarCompra')
-
-const contadorCarrito = document.getElementById('contadorCarrito')
-
-const cantidad = document.getElementById('cantidad')
-
-const precioTotal = document.getElementById('precioTotal')
-
-const cantidadTotal = document.getElementById('cantidadTotal')
-
-const mostrarProducto= document.querySelector ('#mostrarProducto')
-
-
-
-
-
-
-
 //ARRAY PRODUCTOS
-const productos = [producto1, producto2, producto3, producto4, producto5,producto6,producto7, producto8]
+let productos = []
+console.log(productos);
 
 
 //ARRAY CARRITO
 let carrito= []
+
+
+
+const contenedorProductos = document.getElementById('contenedor-productos')
+const contenedorCarrito = document.getElementById('carritoContenedor')
+const botonVaciar = document.getElementById('vaciarCarrito')
+const botonConfirmarCompra = document.querySelector('#confirmarCompra')
+const contadorCarrito = document.getElementById('contadorCarrito')
+const cantidad = document.getElementById('cantidad')
+const precioTotal = document.getElementById('precioTotal')
+const cantidadTotal = document.getElementById('cantidadTotal')
+const mostrarProducto= document.querySelector ('#mostrarProducto')
+const productosContainer = document.querySelector('#productosContainer')
+
+
+
+
 
 
 
@@ -72,7 +64,7 @@ botonConfirmarCompra.addEventListener('click', () => {
 
 
 //PRODUCTOS
-const productosContainer = document.querySelector('#productosContainer')
+
 
 const renderizarProductos= () =>{
 
@@ -87,24 +79,15 @@ const renderizarProductos= () =>{
     `
     nuevoDiv.className = 'box'
     productosContainer.append(nuevoDiv)
-
-
     const boton = document.getElementById(`agregar${producto.id}`)
-
-
-    boton.addEventListener('click', () => {
-        
-    agregarAlCarrito(producto.id)
-        
+    boton.addEventListener('click', () => {        
+    agregarAlCarrito(producto.id)        
     })
 })
 
 //AGREGAR AL CARRITO
 const agregarAlCarrito = (prodId) => {
-
-
     const AgregarCantidad = carrito.some (prod => prod.id === prodId) 
-
     if (AgregarCantidad){ 
         const prod = carrito.map (prod => { 
             if (prod.id === prodId){
@@ -116,9 +99,7 @@ const agregarAlCarrito = (prodId) => {
     const item = productos.find((prod) => prod.id === prodId)
     carrito.push(item)
     actualizarCarrito()
-    console.log(carrito);}
-    }
-
+    }}
 
 }
 
@@ -131,7 +112,7 @@ const eliminarDelCarrito = (prodId) => {
 
     carrito.splice(indice, 1) 
     actualizarCarrito() 
-    console.log(carrito)
+    
 }
 
 
@@ -163,7 +144,16 @@ const actualizarCarrito = () => {
     
 }
 
+const getproductos = async()=> {
+    const response = await fetch ('../json/productos.json')
+    const data=await response.json()
+    productos = data
+    renderizarProductos (productos)    
+
+}
+
 
 mostrarProducto.addEventListener ('click', renderizarProductos)
 
+ getproductos()
 

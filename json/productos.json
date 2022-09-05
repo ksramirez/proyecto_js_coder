@@ -1,0 +1,66 @@
+[
+    {
+        "id": "001",
+        "pord": "Vela envase Vidrio",
+        "descripcion": "Hecha con cera de soja orgánica y esencias naturales.",
+        "precio": 2000,
+        "img": "./img/product1.jpg",
+        "cantidad": "1"
+    },
+    {
+        "id": "002",
+        "pord": "Vela envase Cerámica",
+        "descripcion": "Hecha con cera de soja orgánica y esencias naturales.",
+        "precio": 2000,
+        "img": "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/174/623/products/2-velas-marmol-pagina1-a5f4200c316521cfc516051141793260-480-0.png",
+        "cantidad": "1"
+    },
+    {
+        "id": "003",
+        "pord": "Vela Bubble",
+        "descripcion": "Hecha con cera de soja orgánica y esencias naturales.",
+        "precio": 2000,
+        "img": "https://i.etsystatic.com/34861642/r/il/976442/3915568486/il_340x270.3915568486_thfh.jpg",
+        "cantidad": "1"
+    },
+    {
+        "id": "004",
+        "pord": "Vela Bubble Cube",
+        "descripcion": "Hecha con cera de soja orgánica y esencias naturales.",
+        "precio": 2000,
+        "img": "https://dojiw2m9tvv09.cloudfront.net/27166/product/M_99726572-14522301558233.jpg?46",
+        "cantidad": "1"
+    },
+    {
+        "id": "005",
+        "pord": "Difusor Cerámico",
+        "descripcion": "Hechos con aceites naturales y alcohol de cereal. Envase de Cerámica",
+        "precio": 2000,
+        "img": "https://http2.mlstatic.com/D_NQ_NP_875183-MLA48588065675_122021-O.jpg",
+        "cantidad": "1"
+    },
+    {
+        "id": "006",
+        "pord": "Difusor Vidrio",
+        "descripcion": "Hechos con aceites naturales y alcohol de cereal. Envase de Vidrio",
+        "precio": 2000,
+        "img": "https://d22fxaf9t8d39k.cloudfront.net/daabcafb98ed7508d8d0ffe4626c68b2a957376b33d2df7978b634365a5d8fa224600.png",
+        "cantidad": "1"
+    },
+    {
+        "id": "007",
+        "pord": "Perlas Aromaticas",
+        "descripcion": "Hechos con bizcocho de cerámica y esencias.",
+        "precio": 1800,
+        "img": "https://mercadopax.com.ar/wp-content/uploads/2019/12/perlitas-bohemia-4.jpg\"",
+        "cantidad": "1"
+    },
+    {
+        "id": "008",
+        "pord": "Perlas Aromaticas",
+        "descripcion": "Hechos con bizcocho de cerámica y esencias.",
+        "precio": 1800,
+        "img": "https://bohemiavelas.com.ar/wp-content/uploads/2021/06/perlitas-ceramica-perfumadas-bomehia-velas-aromas.jpg",
+        "cantidad": "1"
+    }
+]
