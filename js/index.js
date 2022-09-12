@@ -1,14 +1,9 @@
-
-
 //ARRAY PRODUCTOS
 let productos = []
-console.log(productos);
-
+console.log(productos)
 
 //ARRAY CARRITO
 let carrito= []
-
-
 
 const contenedorProductos = document.getElementById('contenedor-productos')
 const contenedorCarrito = document.getElementById('carritoContenedor')
@@ -18,14 +13,8 @@ const contadorCarrito = document.getElementById('contadorCarrito')
 const cantidad = document.getElementById('cantidad')
 const precioTotal = document.getElementById('precioTotal')
 const cantidadTotal = document.getElementById('cantidadTotal')
-const mostrarProducto= document.querySelector ('#mostrarProducto')
+const mostrarProductos = document.getElementById ('mostrarProducto')
 const productosContainer = document.querySelector('#productosContainer')
-
-
-
-
-
-
 
 //GET LOCAL STORAGE
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,40 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarCarrito()
     }
 })
-
-
-
-
-//VACIAR CARRITO
-botonVaciar.addEventListener('click', () => {
-    carrito.length = 0
-    actualizarCarrito()
-})
-
-//CONFIRMAR COMPRA
-botonConfirmarCompra.addEventListener('click', () => {
-    Swal.fire({
-        title: '¡Gracias por tu Compra!',
-        text: 'Gracias por su compra, su total es de $ ' + precioTotal.innerText,
-        color:'white',
-        background: '#535252',
-        confirmButtonColor: 'black',
-        showClass: {
-          popup: 'animate__animated animate__backInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__backOutUp'
-        }
-         })         
-         
-})
-
-
 //PRODUCTOS
-
-
 const renderizarProductos= () =>{
-
    productos.forEach ((producto) => {
     const nuevoDiv = document.createElement('div')
     nuevoDiv.innerHTML = `
@@ -94,27 +51,20 @@ const agregarAlCarrito = (prodId) => {
                 prod.cantidad++
             }
         })
+        actualizarCarrito()
     } else {
-
     const item = productos.find((prod) => prod.id === prodId)
     carrito.push(item)
     actualizarCarrito()
     }}
-
 }
-
 //ELIMINAR DEL CARRITO
-
 const eliminarDelCarrito = (prodId) => {
     const item = carrito.find((prod) => prod.id === prodId)
-
     const indice = carrito.indexOf(item) 
-
     carrito.splice(indice, 1) 
-    actualizarCarrito() 
-    
+    actualizarCarrito()     
 }
-
 
 const actualizarCarrito = () => {
     contenedorCarrito.innerHTML = ""
@@ -129,31 +79,47 @@ const actualizarCarrito = () => {
         <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
         <button onclick="eliminarDelCarrito(${prod.id})" class="botonEliminar"><i class="fas fa-trash"></i></button>
         `
-
-        contenedorCarrito.appendChild(div)
-
-        //SET LOCAL STORAGE
-        localStorage.setItem('carrito', JSON.stringify(carrito))
-
+        contenedorCarrito.appendChild(div)      
     })
 
+    //SET LOCAL STORAGE
+    localStorage.setItem('carrito', JSON.stringify(carrito))
     //CONTADOR DEL CARRITO
     contadorCarrito.innerText = carrito.length 
     //PRECIO TOTAL CARRITO
-    precioTotal.innerText = carrito.reduce((acumulador, prod) => acumulador + prod.cantidad * prod.precio, 0)
-    
+    precioTotal.innerText = carrito.reduce((acumulador, prod) => acumulador + prod.cantidad * prod.precio, 0)    
 }
 
+//VACIAR CARRITO
+botonVaciar.addEventListener('click', () => {
+    carrito.length = 0
+    actualizarCarrito()
+})
+
+//CONFIRMAR COMPRA
+botonConfirmarCompra.addEventListener('click', () => {
+    Swal.fire({
+        title: '¡Gracias por tu Compra!',
+        text: 'Gracias por su compra, su total es de $ ' + precioTotal.innerText,
+        color:'white',
+        background: '#535252',
+        confirmButtonColor: 'black',
+        showClass: {
+          popup: 'animate__animated animate__backInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__backOutUp'
+        }
+         })      
+    })
+    
 const getproductos = async()=> {
     const response = await fetch ('../json/productos.json')
     const data=await response.json()
     productos = data
     renderizarProductos (productos)    
-
 }
-
-
-mostrarProducto.addEventListener ('click', renderizarProductos)
+mostrarProductos.addEventListener('click', renderizarProductos)
 
  getproductos()
 

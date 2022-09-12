@@ -1,6 +1,7 @@
 [
     {
         "id": "001",
+        "caracter": "vela",
         "pord": "Vela envase Vidrio",
         "descripcion": "Hecha con cera de soja orgánica y esencias naturales.",
         "precio": 2000,
@@ -9,6 +10,7 @@
     },
     {
         "id": "002",
+        "caracter": "vela",
         "pord": "Vela envase Cerámica",
         "descripcion": "Hecha con cera de soja orgánica y esencias naturales.",
         "precio": 2000,
@@ -17,6 +19,7 @@
     },
     {
         "id": "003",
+        "caracter": "vela",
         "pord": "Vela Bubble",
         "descripcion": "Hecha con cera de soja orgánica y esencias naturales.",
         "precio": 2000,
@@ -25,6 +28,7 @@
     },
     {
         "id": "004",
+        "caracter": "vela",
         "pord": "Vela Bubble Cube",
         "descripcion": "Hecha con cera de soja orgánica y esencias naturales.",
         "precio": 2000,
@@ -33,6 +37,7 @@
     },
     {
         "id": "005",
+        "caracter": "difusor",
         "pord": "Difusor Cerámico",
         "descripcion": "Hechos con aceites naturales y alcohol de cereal. Envase de Cerámica",
         "precio": 2000,
@@ -41,6 +46,7 @@
     },
     {
         "id": "006",
+        "caracter": "difusor",
         "pord": "Difusor Vidrio",
         "descripcion": "Hechos con aceites naturales y alcohol de cereal. Envase de Vidrio",
         "precio": 2000,
@@ -49,6 +55,7 @@
     },
     {
         "id": "007",
+        "caracter": "perla",
         "pord": "Perlas Aromaticas",
         "descripcion": "Hechos con bizcocho de cerámica y esencias.",
         "precio": 1800,
@@ -57,6 +64,7 @@
     },
     {
         "id": "008",
+        "caracter": "perla",
         "pord": "Perlas Aromaticas",
         "descripcion": "Hechos con bizcocho de cerámica y esencias.",
         "precio": 1800,
