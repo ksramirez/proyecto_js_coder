@@ -1,6 +1,6 @@
 //ARRAY PRODUCTOS
 let productos = []
-console.log(productos)
+
 
 //ARRAY CARRITO
 let carrito= []
@@ -13,8 +13,9 @@ const contadorCarrito = document.getElementById('contadorCarrito')
 const cantidad = document.getElementById('cantidad')
 const precioTotal = document.getElementById('precioTotal')
 const cantidadTotal = document.getElementById('cantidadTotal')
-const mostrarProductos = document.getElementById ('mostrarProducto')
 const productosContainer = document.querySelector('#productosContainer')
+const searchBar = document.querySelector('#searchBar')
+const searchButton = document.querySelector('#searchButton')
 
 //GET LOCAL STORAGE
 document.addEventListener('DOMContentLoaded', () => {
@@ -40,6 +41,17 @@ const renderizarProductos= () =>{
     boton.addEventListener('click', () => {        
     agregarAlCarrito(producto.id)        
     })
+    boton.addEventListener('click',()=>{
+        Swal.fire({
+            position: 'bottom-center',
+            icon: 'success',
+            color:'white',
+            background: '#535252',
+            title: 'Se ha agregado al carrito',
+            showConfirmButton: false,
+            timer: 1500
+          })
+    })
 })
 
 //AGREGAR AL CARRITO
@@ -57,6 +69,7 @@ const agregarAlCarrito = (prodId) => {
     carrito.push(item)
     actualizarCarrito()
     }}
+
 }
 //ELIMINAR DEL CARRITO
 const eliminarDelCarrito = (prodId) => {
@@ -98,7 +111,17 @@ botonVaciar.addEventListener('click', () => {
 
 //CONFIRMAR COMPRA
 botonConfirmarCompra.addEventListener('click', () => {
-    Swal.fire({
+    if (carrito.length === 0){
+     Swal.fire({
+            position: 'bottom-center',
+            icon: 'error',
+            color:'white',
+            background: '#535252',
+            title: 'No hay productos en el carrito',
+            showConfirmButton: false,
+            timer: 1500
+          })
+    }     else   Swal.fire({
         title: '¡Gracias por tu Compra!',
         text: 'Gracias por su compra, su total es de $ ' + precioTotal.innerText,
         color:'white',
@@ -110,16 +133,15 @@ botonConfirmarCompra.addEventListener('click', () => {
         hideClass: {
           popup: 'animate__animated animate__backOutUp'
         }
-         })      
-    })
+         }) 
     
+    })
+   
 const getproductos = async()=> {
     const response = await fetch ('../json/productos.json')
     const data=await response.json()
     productos = data
     renderizarProductos (productos)    
 }
-mostrarProductos.addEventListener('click', renderizarProductos)
-
  getproductos()
 
